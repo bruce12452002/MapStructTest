@@ -1,9 +1,8 @@
 package org.example;
 
-import bean.Car;
-import bean.CarDto;
-import bean.CarType;
+import bean.*;
 import mapping.CarMapping;
+import mapping.HomeMapping;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -22,6 +21,18 @@ public class AppTest {
     System.out.println(carDto.getDate());
     System.out.println(carDto.getDateTime());
     System.out.println(carDto.getType());
+  }
+
+  @Test
+  public void test2() {
+    Address address = new Address();
+    address.setAddName("xxxxxxxxxxxxxxxxxxxx");
+
+    Home home = new Home();
+    home.setAddress(address);
+
+    HomeDto homeDto = HomeMapping.INSTANCE.homeToHomeDto(home);
+    System.out.println(homeDto.getAddressDto().getAddId());
   }
 
   private Car getCar() {
