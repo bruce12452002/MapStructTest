@@ -12,6 +12,7 @@ public class Car {
   private Date date;
   private LocalDateTime dateTime;
   private CarType carType;
+  private String language;
 
   public String getMake() {
     return make;
@@ -75,5 +76,13 @@ public class Car {
 
   public void setCarType(CarType carType) {
     this.carType = carType;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
   }
 }
