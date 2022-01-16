@@ -5,6 +5,7 @@ import bean.Car2;
 import bean.CarDto;
 import bean.named.Language;
 import org.mapstruct.BeanMapping;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -13,9 +14,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @Mapper 表示些類別要使用 mapStruct，會通過「繼承或實現」去實現，類別名稱叫 xxxImpl
+ * @Mapper 表示些類別要使用 mapStruct，會通過「繼承或實現」去實現，預設類別名稱叫 xxxImpl，可使用 implementationName 去改
  * imports：表示 xxxImpl 需要用到的 package
  * uses：將其他的 class 包進來，其他類別寫 @Mapper 並不會去找，如以下範例的 @Named
+ * implementationName：生成的子類別名稱
+ * unmappedSourcePolicy：source 沒有映射到 target 的策略，預設是忽略
+ * unmappedTargetPolicy：target 沒有映射到 source 的策略，預設是警告
+ * typeConversionPolicy：類型轉換策略，預設是忽略
+ * nullValueMappingStrategy：source 值是 null 值的策略，預設是 null
+ * componentModel：依賴注入，如有整合 spring，給 spring 會生成 @Component
  */
 @Mapper(imports = Date.class, uses = Language.class)
 public interface CarMapping { // 也可用抽象類別
@@ -51,6 +58,9 @@ public interface CarMapping { // 也可用抽象類別
     @Mapping(target = "make", source = "make")
     Car2 carToCar2(Car car);
 
+    /**
+     * 如果有 Car 轉 CarDto 的映射，變成 List 和 Set 可以自動轉換
+     */
     List<CarDto> carsToCarDtos(List<Car> car);
 
     @Mapping(target = "language", qualifiedByName = {"lang", "taiwan"})
@@ -62,4 +72,10 @@ public interface CarMapping { // 也可用抽象類別
 //    default String toTaiwan(String lan) {
 //        return "中文2";
 //    }
+
+    /**
+     * 集合轉換
+     */
+    @IterableMapping(numberFormat = "$#.00")
+    List<String> intToString(List<Integer> ints);
 }

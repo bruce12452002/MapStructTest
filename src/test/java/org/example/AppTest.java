@@ -2,19 +2,24 @@ package org.example;
 
 import bean.*;
 import mapping.Car2Mapping;
+import mapping.Car3Mapping;
 import mapping.CarMapping;
 import mapping.HomeMapping;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class AppTest {
+    private final Car car = new Car();
+
     @Test
     public void test1() {
-        CarDto carDto = CarMapping.INSTANCE.carToCarDto(getCar());
+        CarDto carDto = CarMapping.INSTANCE.carToCarDto(car);
 //    CarDto carDto = CarMapping.INSTANCE.carToCarDto2(getCar());
         System.out.println(carDto.getMake());
         System.out.println(carDto.getMake2());
@@ -29,8 +34,8 @@ public class AppTest {
     @Test
     public void test2() {
         List<Car> cars = new ArrayList<>();
-        cars.add(getCar());
-        cars.add(getCar());
+        cars.add(car);
+        cars.add(car);
         List<CarDto> carDtos = CarMapping.INSTANCE.carsToCarDtos(cars);
 
         carDtos.forEach(carDto -> {
@@ -48,14 +53,14 @@ public class AppTest {
 
     @Test
     public void test3() {
-        Car2 car2 = CarMapping.INSTANCE.carToCar2(getCar());
+        Car2 car2 = CarMapping.INSTANCE.carToCar2(car);
         System.out.println(car2.getMake());
         System.out.println(car2.getPrice());
     }
 
     @Test
     public void test4() {
-        Car2 car2 = CarMapping.INSTANCE.carToCar2ByLanguage(getCar());
+        Car2 car2 = CarMapping.INSTANCE.carToCar2ByLanguage(car);
         System.out.println(car2.getMake());
         System.out.println(car2.getPrice());
         System.out.println(car2.getLanguage());
@@ -76,7 +81,7 @@ public class AppTest {
 
     @Test
     public void test6() {
-        Car2 car2 = Car2Mapping.INSTANCE.carToCar2(getCar());
+        Car2 car2 = Car2Mapping.INSTANCE.carToCar2(car);
         System.out.println(car2.getMake());
         System.out.println(car2.getPrice());
         System.out.println(car2.getLanguage());
@@ -104,8 +109,21 @@ public class AppTest {
         System.out.println(car.getLanguage());
     }
 
-    private Car getCar() {
-        Car car = new Car();
+    @Test
+    public void test8() {
+        Car2 car2 = Car3Mapping.INSTANCE.carToCar2ByLanguage(car);
+        System.out.println(car2.getLanguage());
+    }
+
+    @Test
+    public void test9() {
+        List<String> strings = CarMapping.INSTANCE.intToString(Arrays.asList(1, 2, 3, 4, 5));
+        System.out.println(strings);
+    }
+
+
+    @Before
+    public void getCar() {
         car.setMake("make");
         car.setMake2("999");
         car.setNumberOfSeats(6);
@@ -116,6 +134,5 @@ public class AppTest {
         CarType carType = new CarType();
         carType.setType("my type");
         car.setCarType(carType);
-        return car;
     }
 }
