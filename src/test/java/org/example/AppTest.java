@@ -1,6 +1,8 @@
 package org.example;
 
 import bean.*;
+import enu.CheeseType;
+import enu.CheeseTypeSuffixed;
 import enu.MyEnum;
 import enu.MyEnum2;
 import mapping.Car2Mapping;
@@ -138,6 +140,12 @@ public class AppTest {
     MyEnum2 myEnum2 = CarMapping.INSTANCE.enumMapping(MyEnum.MY_ENUM_X);
     //    MyEnum2 myEnum2 = CarMapping.INSTANCE.enumMapping(null);
     System.out.println(myEnum2.name() + "==" + myEnum2.getV());
+  }
+
+  @Test
+  public void test12() {
+    CheeseTypeSuffixed cheeseTypeSuffixed = CarMapping.INSTANCE.enum2Mapping(CheeseType.BRIE);
+    System.out.println(cheeseTypeSuffixed.name());
   }
 
   @Before

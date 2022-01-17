@@ -4,6 +4,8 @@ import bean.Car;
 import bean.Car2;
 import bean.CarDto;
 import bean.named.Language;
+import enu.CheeseType;
+import enu.CheeseTypeSuffixed;
 import enu.MyEnum;
 import enu.MyEnum2;
 import org.mapstruct.*;
@@ -22,6 +24,7 @@ import java.util.Map;
  * 會生成 @Component
  */
 @Mapper(imports = Date.class, uses = Language.class)
+@MapperConfig
 public interface CarMapping { // 也可用抽象類別
   CarMapping INSTANCE = Mappers.getMapper(CarMapping.class);
 
@@ -95,4 +98,10 @@ public interface CarMapping { // 也可用抽象類別
     @ValueMapping(target = "MY_ENUM_C", source = MappingConstants.NULL) // 傳進來是 null 時的策略
   })
   MyEnum2 enumMapping(MyEnum myEnum);
+
+  /**
+   * @ValueMapping 是針對名稱的對應；@EnumMapping 是針對有固定名稱的轉換，如此例是固定另一個 enum 最後都有 _TYPE
+   */
+  @EnumMapping(nameTransformationStrategy = "suffix", configuration = "_TYPE")
+  CheeseTypeSuffixed enum2Mapping(CheeseType cheese);
 }
