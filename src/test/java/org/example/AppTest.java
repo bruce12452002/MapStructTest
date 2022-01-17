@@ -5,10 +5,7 @@ import enu.CheeseType;
 import enu.CheeseTypeSuffixed;
 import enu.MyEnum;
 import enu.MyEnum2;
-import mapping.Car2Mapping;
-import mapping.Car3Mapping;
-import mapping.CarMapping;
-import mapping.HomeMapping;
+import mapping.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -146,6 +143,16 @@ public class AppTest {
   public void test12() {
     CheeseTypeSuffixed cheeseTypeSuffixed = CarMapping.INSTANCE.enum2Mapping(CheeseType.BRIE);
     System.out.println(cheeseTypeSuffixed.name());
+  }
+
+  @Test
+  public void test13() {
+    Aaa aaa = new Aaa();
+//    aaa.setId(1);
+    aaa.setName("xxx");
+    Bbb bbb = ABMapping.INSTANCE.aaaToBbb(aaa);
+//    System.out.println(bbb.getId());
+    System.out.println(bbb.getName());
   }
 
   @Before

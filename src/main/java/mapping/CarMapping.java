@@ -16,12 +16,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Mapper 表示些類別要使用 mapStruct，會通過「繼承或實現」去實現，預設類別名稱叫 xxxImpl，可使用 implementationName 去改 imports：表示
- * xxxImpl 需要用到的 package uses：將其他的 class 包進來，其他類別寫 @Mapper 並不會去找，如以下範例的 @Named
- * implementationName：生成的子類別名稱 unmappedSourcePolicy：source 沒有映射到 target 的策略，預設是忽略
- * unmappedTargetPolicy：target 沒有映射到 source 的策略，預設是警告 typeConversionPolicy：類型轉換策略，預設是忽略
- * nullValueMappingStrategy：source 值是 null 值的策略，預設是 null componentModel：依賴注入，如有整合 spring，給 spring
- * 會生成 @Component
+ * @Mapper 表示些類別要使用 mapStruct，會通過「繼承或實現」去實現，預設類別名稱叫 xxxImpl，可使用 implementationName 去改
+ * imports：表示 xxxImpl 需要用到的 package
+ * uses：將其他的 class 包進來，其他類別寫 @Mapper 並不會去找，如以下範例的 @Named
+ * implementationName：生成的子類別名稱
+ * unmappedSourcePolicy：source 沒有映射到 target 的策略，預設是忽略
+ * unmappedTargetPolicy：target 沒有映射到 source 的策略，預設是警告
+ * typeConversionPolicy：類型轉換策略，預設是忽略
+ * nullValueMappingStrategy：source 值是 null 值的策略，預設是 null
+ * componentModel：依賴注入，如有整合 spring，給 spring 生成 @Component；預設是 default，表示要用 Mappers.getMapper 取得實體
+ *   給 cdi，表示使用 @Inject 取得實體
+ * mappingInheritanceStrategy：MappingInheritanceStrategy 有四種，和 @InheritConfiguration @InheritInverseConfiguration
+ *   有關，預設是 EXPLICIT，表示要顯示的使用這兩個註解其中之一才有用，剩下三個指的是不寫預設是哪一種或全繼承，Car2Mapping 有範例
  */
 @Mapper(imports = Date.class, uses = Language.class)
 @MapperConfig
@@ -49,8 +55,8 @@ public interface CarMapping { // 也可用抽象類別
   //  CarDto carToCarDto2(Car car);
 
   /**
-   * 有些欄位不想 mapping，可以用 ignore，但有些情況是有非常多的欄位都想 ignore，那要寫很多 所以使用 @BeanMapping 的 ignoreByDefault
-   * 可以忽略預設的行為，然後將想 mapping 的欄位打出來即可
+   * 有些欄位不想 mapping，可以用 ignore，但有些情況是有非常多的欄位都想 ignore，那要寫很多
+   * 所以使用 @BeanMapping 的 ignoreByDefault 可以忽略預設的行為，然後將想 mapping 的欄位打出來即可
    */
   @BeanMapping(ignoreByDefault = true)
   //  @Mapping(target = "make", source="make", ignore = true)
