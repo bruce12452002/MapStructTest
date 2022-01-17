@@ -30,7 +30,6 @@ import java.util.Map;
  *   有關，預設是 EXPLICIT，表示要顯示的使用這兩個註解其中之一才有用，剩下三個指的是不寫預設是哪一種或全繼承，Car2Mapping 有範例
  */
 @Mapper(imports = Date.class, uses = Language.class)
-@MapperConfig
 public interface CarMapping { // 也可用抽象類別
   CarMapping INSTANCE = Mappers.getMapper(CarMapping.class);
 

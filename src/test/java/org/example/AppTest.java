@@ -148,10 +148,10 @@ public class AppTest {
   @Test
   public void test13() {
     Aaa aaa = new Aaa();
-//    aaa.setId(1);
+    aaa.setId(1);
     aaa.setName("xxx");
     Bbb bbb = ABMapping.INSTANCE.aaaToBbb(aaa);
-//    System.out.println(bbb.getId());
+    System.out.println(bbb.getId());
     System.out.println(bbb.getName());
   }
 
