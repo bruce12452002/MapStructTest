@@ -155,6 +155,15 @@ public class AppTest {
     System.out.println(bbb.getName());
   }
 
+  @Test
+  public void test14() {
+    Aaa aaa = new Aaa();
+    aaa.setId(1);
+    aaa.setName("xxx");
+    Bbb bbb = ABMapping.INSTANCE.aaaToBbbByContext(aaa, "name");
+    System.out.println(bbb.getName());
+  }
+
   @Before
   public void getCar() {
     car.setMake("make");
