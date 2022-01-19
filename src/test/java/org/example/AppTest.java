@@ -164,6 +164,16 @@ public class AppTest {
     System.out.println(bbb.getName());
   }
 
+  @Test
+  public void test15() {
+    Ddd ddd = new Ddd();
+    ddd.setId(1);
+    ddd.setName(null);
+    Ccc ccc = CDMapping.INSTANCE.dddToCcc(ddd);
+    System.out.println(ccc.getId());
+    System.out.println(ccc.getName());
+  }
+
   @Before
   public void getCar() {
     car.setMake("make");

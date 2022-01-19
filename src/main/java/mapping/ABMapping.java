@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
 public interface ABMapping {
   ABMapping INSTANCE = Mappers.getMapper(ABMapping.class);
 
-  Bbb aaaToBbb(Aaa car);
+  Bbb aaaToBbb(Aaa aaa);
 
   /** 如果有多個 source，可以使用 @Context，aaaToBbbByContext 和 changeNameByBbb 的 @Context 全加或全不加才會成功 */
   Bbb aaaToBbbByContext(Aaa source, @Context String name);
