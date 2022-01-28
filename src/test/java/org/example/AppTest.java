@@ -174,6 +174,17 @@ public class AppTest {
     System.out.println(ccc.getName());
   }
 
+  @Test
+  public void test16() {
+    List<Eee> list = Arrays.asList(new Eee(1, "xxx"), new Eee(2, "ooo"));
+    List<Fff> qoo = EFMapping.INSTANCE.getFffs(list, 7, "qoo"); // 7和qoo 沒用，因為有加 @Context
+    qoo.forEach(
+        c -> {
+          System.out.println(c.getId());
+          System.out.println(c.getName());
+        });
+  }
+
   @Before
   public void getCar() {
     car.setMake("make");
