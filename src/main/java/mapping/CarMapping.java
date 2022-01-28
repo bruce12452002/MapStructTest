@@ -40,7 +40,14 @@ public interface CarMapping { // 也可用抽象類別
   @Mapping(target = "date", expression = "java(new Date())")
   @Mapping(target = "dateTime", dateFormat = "yyyy-MM-dd HH:mm:ss")
   @Mapping(target = "type", source = "car.carType.type")
+  @Mapping(target = "make2", expression = "java(xxx(carDto))") // 回傳結果的駝峰命名可以拿來用，因為 XxxImpl 已經有 new 了
   CarDto carToCarDto(Car car);
+
+  default int xxx(CarDto carDto){
+    System.out.println(carDto);
+    System.out.println(carDto == null);
+    return 6;
+  }
 
   // @Mappings 和 @Mapping：@Mappings 包含多個 @Mapping
   //  @Mappings({

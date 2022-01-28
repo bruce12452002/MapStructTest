@@ -15,7 +15,7 @@ public interface ABMapping {
 
   Bbb aaaToBbb(Aaa aaa);
 
-  /** 如果有多個 source，可以使用 @Context，aaaToBbbByContext 和 changeNameByBbb 的 @Context 全加或全不加才會成功 */
+  /** 如果有多個 source，可以使用 @Context，aaaToBbbByContext 和 changeNameByBbb 的 @Context 全加或全不加才會成功，只差在會不會判斷 null */
   Bbb aaaToBbbByContext(Aaa source, @Context String name);
 
   @AfterMapping
