@@ -168,7 +168,7 @@ public class AppTest {
   public void test15() {
     Ddd ddd = new Ddd();
     ddd.setId(1);
-    ddd.setName(null);
+    ddd.setName("xxx");
     Ccc ccc = CDMapping.INSTANCE.dddToCcc(ddd);
     System.out.println(ccc.getId());
     System.out.println(ccc.getName());
